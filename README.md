@@ -113,6 +113,25 @@ This server uses the following environment variables:
   - Uses 'updated' if value is invalid
   - Does not affect list_pages tool behavior (only used for initial resource fetch)
 
+### Authentication Check
+
+To verify if your authentication is properly configured, use the `auth:check` command:
+
+```bash
+npm run auth:check
+```
+
+This command will:
+- Check if the specified project is accessible
+- Verify if your `COSENSE_SID` token is valid
+- Provide clear instructions if authentication is needed
+
+Use this command when:
+- Setting up the server for the first time
+- Your authentication token expires
+- You're having trouble accessing a private project
+- You want to verify your environment configuration
+
 ### Debugging
 
 Since MCP servers communicate via stdio, debugging can be challenging. Using [MCP Inspector](https://github.com/modelcontextprotocol/inspector) is recommended. You can run it with:
@@ -228,6 +247,25 @@ Windowsの場合: `%APPDATA%/Claude/claude_desktop_config.json`
   - 未設定時は'updated'を使用
   - 無効な値の場合は'updated'を使用
   - list_pagesツールの動作には影響しません（初期リソース取得時のみ使用）
+
+### 認証確認
+
+認証が正しく設定されているか確認するには、`auth:check`コマンドを使用します：
+
+```bash
+npm run auth:check
+```
+
+このコマンドは以下を行います：
+- 指定されたプロジェクトがアクセス可能か確認
+- `COSENSE_SID`トークンが有効か検証
+- 認証が必要な場合は明確な手順を表示
+
+以下の場合に使用してください：
+- サーバーを初めてセットアップする時
+- 認証トークンの有効期限が切れた時
+- プライベートプロジェクトへのアクセスに問題がある時
+- 環境設定を確認したい時
 
 ### デバッグ方法
 
