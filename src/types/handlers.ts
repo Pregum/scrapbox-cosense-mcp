@@ -69,6 +69,41 @@ export type CreatePageHandlerResponse = HandlerResponse<{
 }>;
 
 /**
+ * SID更新リクエスト
+ */
+export interface UpdateSidRequest {
+  sid: string;
+}
+
+/**
+ * SID更新レスポンス
+ */
+export interface UpdateSidResponse {
+  success: boolean;
+  message: string;
+  oldSid?: string;
+  newSid: string;
+  note: string;
+}
+
+/**
+ * SIDヘルプ表示リクエスト
+ */
+export interface ShowSidHelpRequest {
+  browser?: string;
+}
+
+/**
+ * SIDヘルプ表示レスポンス
+ */
+export interface ShowSidHelpResponse {
+  browser: string;
+  projectUrl: string;
+  instructions: string;
+  quickCommand: string;
+}
+
+/**
  * ハンドラー関数の型定義
  */
 export type RequestHandler<P, R> = (params: P) => Promise<R>;

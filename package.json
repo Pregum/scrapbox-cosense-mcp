@@ -12,11 +12,12 @@
     "build"
   ],
   "scripts": {
-    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\" && node -e \"require('fs').chmodSync('build/scripts/auth-check.js', '755')\"",
+    "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\" && node -e \"try{require('fs').chmodSync('build/scripts/auth-check.js', '755')}catch{}\" && node -e \"try{require('fs').chmodSync('build/scripts/update-config.js', '755')}catch{}\"",
     "prepare": "npm run build",
     "watch": "tsc --watch",
     "inspector": "npx @modelcontextprotocol/inspector build/index.js",
     "auth:check": "node build/scripts/auth-check.js",
+    "update:sid": "node build/scripts/update-config.js"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "0.6.0",

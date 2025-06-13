@@ -4,6 +4,8 @@ import { handleListPages } from './handlers/list-pages.js';
 import { handleGetPage } from './handlers/get-page.js';
 import { handleSearchPages } from './handlers/search-pages.js';
 import { handleCreatePage } from './handlers/create-page.js';
+import { handleUpdateSid } from './handlers/update-sid.js';
+import { handleShowSidHelp } from './handlers/show-sid-help.js';
 
 export function setupRoutes(
   server: Server,
@@ -50,6 +52,40 @@ export function setupRoutes(
             body: request.params.arguments?.body as string | undefined
           }
         );
+
+      case "update_sid":
+        const result = await handleUpdateSid(
+          {
+            sid: String(request.params.arguments?.sid)
+          },
+          cosenseSid
+        );
+        
+        // Update the config with new SID for subsequent requests
+        config.cosenseSid = request.params.arguments?.sid as string;
+        
+        return {
+          content: [{
+            type: "text",
+            text: JSON.stringify(result, null, 2)
+          }]
+        };
+
+      case "show_sid_help":
+        const helpResult = await handleShowSidHelp(
+          {
+            browser: request.params.arguments?.browser as string | undefined
+          },
+          projectName,
+          process.env.API_DOMAIN || 'scrapbox.io'
+        );
+        
+        return {
+          content: [{
+            type: "text",
+            text: helpResult.instructions
+          }]
+        };
 
       default:
         return {

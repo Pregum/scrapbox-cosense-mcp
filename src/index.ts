@@ -252,6 +252,42 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
           required: ["query"],
         },
       },
+      {
+        name: "update_sid",
+        description: `
+        Update the session ID (COSENSE_SID) for authentication.
+        This is useful when your authentication token expires and you need to provide a new one.
+        The update only affects the current MCP session.
+        `,
+        inputSchema: {
+          type: "object",
+          properties: {
+            sid: {
+              type: "string",
+              description: "The new session ID (connect.sid cookie value) from your browser",
+            },
+          },
+          required: ["sid"],
+        },
+      },
+      {
+        name: "show_sid_help",
+        description: `
+        Show detailed instructions on how to get the connect.sid cookie from your browser.
+        Provides step-by-step instructions for different browsers and a quick console command.
+        `,
+        inputSchema: {
+          type: "object",
+          properties: {
+            browser: {
+              type: "string",
+              enum: ["chrome", "firefox", "safari", "edge"],
+              description: "Your browser type (default: chrome)",
+            },
+          },
+          required: [],
+        },
+      },
     ],
   };
 });
