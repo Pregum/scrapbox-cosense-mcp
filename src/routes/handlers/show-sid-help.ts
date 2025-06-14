@@ -63,14 +63,14 @@ export async function handleShowSidHelp(
   };
 
   const quickMethod = [
-    '\n=== Quick Method (Works in any browser) ===',
-    `1. Open ${projectUrl} and log in`,
-    '2. Open the browser console (F12 > Console tab)',
-    '3. Paste and run this command:',
-    '   copy(document.cookie.match(/connect\\.sid=([^;]+)/)?.[1] || "Not found")',
-    '4. The SID is now in your clipboard!',
+    '\n=== Note ===',
+    'The connect.sid cookie is HttpOnly and cannot be accessed via JavaScript.',
+    'You must use the Developer Tools method described above to view and copy the cookie value.',
     '',
-    'If it shows "Not found", make sure you are logged in and on a Scrapbox page.',
+    'The cookie value should look like:',
+    's%3A07ThcoUacwzZ0HoabS5L-aoo325zt9gU.6%2FHbP9x7C9%2BLjr6tVtlX1Vs0flSTK0Alb%2BdTOaE0Rz0',
+    '',
+    'Make sure to copy the ENTIRE value including the "s%3A" prefix.',
   ];
 
   const browserInstructions = instructions[browser.toLowerCase() as keyof typeof instructions] || instructions.chrome;
@@ -79,6 +79,6 @@ export async function handleShowSidHelp(
     browser: browser,
     projectUrl: projectUrl,
     instructions: [...browserInstructions, ...quickMethod].join('\n'),
-    quickCommand: 'copy(document.cookie.match(/connect\\.sid=([^;]+)/)?.[1] || "Not found")',
+    quickCommand: 'N/A - HttpOnly cookie cannot be accessed via JavaScript',
   };
 }
